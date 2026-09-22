@@ -25,7 +25,7 @@ document.addEventListener('click', function (e) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7 differences between High Point University and Chapman University</title>
-<meta name="description" content="A side-by-side comparison of High Point University and Chapman University: guarantees, cost, leaders in residence and athletics.">
+<meta id="pgDesc" name="description" content="A side-by-side comparison of High Point University and Chapman University: guarantees, cost, leaders in residence and athletics.">
 <meta name="robots" content="noindex,nofollow">
 <style>
 :root{
@@ -233,24 +233,65 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
   .roster{grid-template-columns:1fr}
   .btn{display:block;width:100%;text-align:center}
 }
+
+/* ---------- tab strip ----------
+   Fixed at the top of the document, never sticky, never a dropdown. On phones it
+   becomes a 4-across grid so all eight schools are reachable in one tap with no
+   horizontal swipe. */
+.tabstrip{background:#fff;border-bottom:2px solid var(--ink)}
+.tabstrip .inner{display:flex;max-width:840px;margin:0 auto;padding:0 20px}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;
+  margin:0;padding:13px 15px 11px;cursor:pointer;white-space:nowrap;
+  font:700 14px/1.2 var(--sans);letter-spacing:.012em;color:#6b6b72}
+.tab:first-child{padding-left:0}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--purple);border-bottom-color:var(--purple)}
+.tab:focus-visible{outline:2px solid var(--purple);outline-offset:-3px;border-radius:2px}
+main{animation:fade .16s ease-out}
+@keyframes fade{from{opacity:.55}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){main{animation:none}}
+@media(max-width:719px){
+  .tabstrip .inner{display:grid;grid-template-columns:repeat(4,1fr);
+    padding:0 10px;column-gap:2px}
+  .tab{padding:10px 2px 8px;font-size:11.5px;line-height:1.25;
+    white-space:normal;text-align:center;letter-spacing:0;
+    display:flex;align-items:center;justify-content:center;
+    border-bottom-width:3px;min-height:38px;hyphens:none}
+  .tab:first-child{padding-left:2px}
+}
+@media(max-width:389px){
+  .tab{font-size:11px;padding:9px 1px 7px}
+}
 </style>
 </head>
 <body>
 
 <header class="mast"><div class="wrap">
-  <a class="site" href="#top"><b>Private School Comparison</b><span>HPU vs. Chapman</span></a>
+  <a class="site" href="#top"><b>Private School Comparison</b></a>
   <a class="mbtn" href="https://www.highpoint.edu/?utm_source=collegefactsheets.com&amp;utm_medium=referral&amp;utm_campaign=school-comparison-2026&amp;utm_content=chapman">Visit university website</a>
 </div></header>
 
-<main id="top">
+<nav class="tabstrip"><div class="inner" role="tablist" aria-label="Compare High Point University with">
+  <button class="tab" role="tab" id="tab-tampa" data-school="tampa" aria-selected="false" tabindex="-1">Tampa</button>
+  <button class="tab" role="tab" id="tab-marist" data-school="marist" aria-selected="false" tabindex="-1">Marist</button>
+  <button class="tab" role="tab" id="tab-loyola-maryland" data-school="loyola-maryland" aria-selected="false" tabindex="-1">Loyola Maryland</button>
+  <button class="tab" role="tab" id="tab-quinnipiac" data-school="quinnipiac" aria-selected="false" tabindex="-1">Quinnipiac</button>
+  <button class="tab" role="tab" id="tab-ithaca" data-school="ithaca" aria-selected="false" tabindex="-1">Ithaca</button>
+  <button class="tab" role="tab" id="tab-monmouth" data-school="monmouth" aria-selected="false" tabindex="-1">Monmouth</button>
+  <button class="tab" role="tab" id="tab-chapman" data-school="chapman" aria-selected="true" tabindex="0">Chapman</button>
+  <button class="tab" role="tab" id="tab-pepperdine" data-school="pepperdine" aria-selected="false" tabindex="-1">Pepperdine</button>
+</div></nav>
+
+<main id="top" role="tabpanel" aria-labelledby="tab-chapman">
 <div class="wrap">
 
   <div class="head">
     <p class="kind">Side-by-side comparison</p>
-    <h1>7 differences between High&nbsp;Point&nbsp;University and Chapman University</h1>
-    <p class="deck">High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Chapman guarantees none of them.</p>
-    <p class="line"><span>Updated September 2026</span><i>/</i><span>North Carolina vs California</span><i>/</i><span>4 min read</span></p>
+    <h1 id="pgH1">7 differences between High&nbsp;Point&nbsp;University and Chapman University</h1>
+    <p id="pgDeck" class="deck">High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Chapman guarantees none of them.</p>
+    <p class="line"><span>Updated September 2026</span><i>/</i><span id="pgScope">North Carolina vs California</span><i>/</i><span>4 min read</span></p>
     <ul class="jump">
+      <li id="jumpNumbers" hidden><a href="#numbers">The numbers</a></li>
       <li><a href="#table">Side by side</a></li>
       <li><a href="#guarantees">4 guarantees</a></li>
       <li><a href="#teach">Who teaches at HPU</a></li>
@@ -259,15 +300,32 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
     </ul>
   </div>
 
+  <section id="numbers" hidden>
+    <h2 id="numbersH2" class="eyeless">Where each university stands</h2>
+    <div id="ranksGrid" class="ranks">
+      <div class="rh blank"></div>
+      <div class="rh usc">High Point University</div>
+      <div class="rh">Chapman University</div>
+
+      <div class="rl">Guarantees published for every student</div>
+      <div class="rv usc">4</div>
+      <div class="rv">0</div>
+
+      <div class="rl last">Named leaders in residence from outside the university</div>
+      <div class="rv usc last">40+</div>
+      <div class="rv last">0</div>
+    </div>
+  </section>
+
   <section id="table">
     <h2 class="eyeless">The full breakdown</h2>
     <div class="tablewrap"><table role="table">
-      <caption class="vh">How High Point University and Chapman University compare</caption>
+      <caption id="tblCap" class="vh">How High Point University and Chapman University compare</caption>
       <thead role="rowgroup"><tr role="row">
         <th scope="col" role="columnheader" class="spacer"><span class="vh">Feature</span></th>
         <th scope="col" role="columnheader" class="hus">High Point University</th>
-        <th scope="col" role="columnheader">Chapman University</th></tr></thead>
-      <tbody role="rowgroup">
+        <th id="tblThem" scope="col" role="columnheader">Chapman University</th></tr></thead>
+      <tbody id="tblBody" role="rowgroup">
         <tr role="row"><th scope="row" role="rowheader">An internship, guaranteed</th><td role="cell" class="us">Yes</td><td role="cell" class="them">No</td></tr>
         <tr role="row"><th scope="row" role="rowheader">Graduation in four years, guaranteed</th><td role="cell" class="us">Yes</td><td role="cell" class="them">No</td></tr>
         <tr role="row"><th scope="row" role="rowheader">A tuition-free term abroad</th><td role="cell" class="us">Yes</td><td role="cell" class="them">No, you pay tuition</td></tr>
@@ -280,16 +338,16 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
   </section>
 
   <section id="guarantees">
-    <h2 class="eyeless">Four things High&nbsp;Point&nbsp;University guarantees that Chapman does not</h2>
+    <h2 id="gteeH2" class="eyeless">Four things High&nbsp;Point&nbsp;University guarantees that Chapman does not</h2>
     <ol class="gtee">
       <li><h3>An internship, guaranteed</h3>
-        <p>Finish the five-step career program and you will have an internship. Chapman makes no
+        <p id="gInt">Finish the five-step career program and you will have an internship. Chapman makes no
         such promise.</p></li>
       <li><h3>Your degree, finished in 4 years</h3>
         <p>A published four-year plan, a Success Coach, and a checkpoint every year so you graduate
         on time.</p></li>
       <li><h3>A tuition-free summer abroad</h3>
-        <p>Take a four-credit Maymester course overseas and HPU covers the tuition. At Chapman you pay tuition.</p></li>
+        <p id="gAbroad">Take a four-credit Maymester course overseas and HPU covers the tuition. At Chapman you pay tuition.</p></li>
       <li><h3>A tuition-free master's degree</h3>
         <p>Get a master's degree at HPU without paying tuition. Eleven programs qualify.</p></li>
     </ol>
@@ -358,7 +416,7 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
 
   <div class="src">
     <h2>Sources</h2>
-    <ul>
+    <ul id="srcList">
       <li>High Point University published program pages and cost of attendance for 2026-27.</li>
       <li>Chapman University published program pages and cost of attendance for 2026-27.</li>
       <li>Big South Conference and NCAA Division I tournament records.</li>
@@ -368,6 +426,118 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
 
 </div>
 </main>
+
+
+<script>
+(function () {
+  var D = {"tampa": {"n": 8, "title": "8 differences between High Point University and the University of Tampa", "desc": "A side-by-side comparison of High Point University and the University of Tampa: guarantees, cost, leaders in residence and athletics.", "abbr": "UT", "h1": "8 differences between High&nbsp;Point&nbsp;University and the University of Tampa", "deck": "High&nbsp;Point&nbsp;University graduates out&#8209;earn University of Tampa graduates.", "state": "North Carolina vs Florida", "ranksOn": true, "ranksH2": "Where each university ranks", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">University of Tampa</div>\n\n      <div class=\"rl\">Graduate earnings in the South</div>\n      <div class=\"rv usc\">#1</div>\n      <div class=\"rv\">#6</div>\n\n      <div class=\"rl\">Graduates who out-earn a high school diploma</div>\n      <div class=\"rv usc\">93%</div>\n      <div class=\"rv\">84%</div>\n\n      <div class=\"rl last\">Overall rank in the South</div>\n      <div class=\"rv usc last\">#5</div>\n      <div class=\"rv last\">#11</div>", "cap": "How High Point University and University of Tampa compare", "them": "University of Tampa", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Rank for what graduates earn</th><td role=\"cell\" class=\"us\">#1 in the South</td><td role=\"cell\" class=\"them\">#6</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduates who out-earn a high school diploma</th><td role=\"cell\" class=\"us\">93%</td><td role=\"cell\" class=\"them\">84%</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Tampa does not", "gInt": "Finish the five-step career program and you will have an internship. Tampa makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Tampa you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. Zero published at the University of Tampa.", "ncaaVs": "High&nbsp;Point&nbsp;University plays NCAA Division I. The University of Tampa plays Division II.", "sources": "<li>U.S. News &amp; World Report, 2027 Best Colleges, Regional Universities (South).</li>\n<li>High Point University published program pages.</li>\n<li>University of Tampa published program and catalog pages.</li>\n<li>Big South Conference and NCAA Division I records, 2025-26 season.</li>"}, "marist": {"n": 7, "title": "7 differences between High Point University and Marist University", "desc": "A side-by-side comparison of High Point University and Marist University: guarantees, cost, leaders in residence and athletics.", "abbr": "Marist", "h1": "7 differences between High&nbsp;Point&nbsp;University and Marist University", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Marist guarantees none of them.", "state": "North Carolina vs New York", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Marist University</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc\">40+</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl last\">Most recent NCAA Tournament</div>\n      <div class=\"rv usc last\">2026</div>\n      <div class=\"rv last\">1987</div>", "cap": "How High Point University and Marist University compare", "them": "Marist University", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Most recent NCAA Tournament</th><td role=\"cell\" class=\"us\">2026</td><td role=\"cell\" class=\"them\">1987</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Marist does not", "gInt": "Finish the five-step career program and you will have an internship. Marist makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Marist you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. None at Marist.", "ncaaVs": "High&nbsp;Point&nbsp;University last played in the NCAA Tournament in 2026. Marist last played in 1987.", "sources": "<li>High Point University published program pages.</li>\n<li>Marist University published program, study abroad and cost pages.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "loyola-maryland": {"n": 7, "title": "7 differences between High Point University and Loyola University Maryland", "desc": "A side-by-side comparison of High Point University and Loyola University Maryland: guarantees, cost, leaders in residence and athletics.", "abbr": "Loyola MD", "h1": "7 differences between High&nbsp;Point&nbsp;University and Loyola University Maryland", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Loyola Maryland guarantees none of them.", "state": "North Carolina vs Maryland", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Loyola University Maryland</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc\">40+</div>\n      <div class=\"rv\">11</div>\n\n      <div class=\"rl last\">Most recent NCAA Tournament</div>\n      <div class=\"rv usc last\">2026</div>\n      <div class=\"rv last\">2012</div>", "cap": "How High Point University and Loyola University Maryland compare", "them": "Loyola University Maryland", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Most recent NCAA Tournament</th><td role=\"cell\" class=\"us\">2026</td><td role=\"cell\" class=\"them\">2012</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Loyola Maryland does not", "gInt": "Finish the five-step career program and you will have an internship. Loyola Maryland makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Loyola Maryland you pay tuition.", "teachVs": "Loyola Maryland calls eleven people executives in residence. All eleven are on its own teaching faculty.", "ncaaVs": "High&nbsp;Point&nbsp;University last played in the NCAA Tournament in 2026. Loyola Maryland last played in 2012.", "sources": "<li>High Point University published program pages and cost of attendance for 2026-27.</li>\n<li>Loyola University Maryland published program pages, institutional research profile and cost of attendance for 2026-27.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "quinnipiac": {"n": 6, "title": "6 differences between High Point University and Quinnipiac University", "desc": "A side-by-side comparison of High Point University and Quinnipiac University: guarantees, cost, leaders in residence and athletics.", "abbr": "QU", "h1": "6 differences between High&nbsp;Point&nbsp;University and Quinnipiac University", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Quinnipiac guarantees none of them.", "state": "North Carolina vs Connecticut", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Quinnipiac University</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc\">40+</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl last\">Trips to the NCAA Tournament</div>\n      <div class=\"rv usc last\">2</div>\n      <div class=\"rv last\">0</div>", "cap": "How High Point University and Quinnipiac University compare", "them": "Quinnipiac University", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Trips to the NCAA Tournament</th><td role=\"cell\" class=\"us\">2</td><td role=\"cell\" class=\"them\">None</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Quinnipiac does not", "gInt": "Finish the five-step career program and you will have an internship. Quinnipiac makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Quinnipiac you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. None at Quinnipiac.", "ncaaVs": "High&nbsp;Point&nbsp;University has played in the NCAA Tournament twice. Quinnipiac has never played in it.", "sources": "<li>High Point University published program pages.</li>\n<li>Quinnipiac University published program pages, Common Data Set and cost of attendance.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "ithaca": {"n": 7, "title": "7 differences between High Point University and Ithaca College", "desc": "A side-by-side comparison of High Point University and Ithaca College: guarantees, cost, leaders in residence and athletics.", "abbr": "Ithaca", "h1": "7 differences between High&nbsp;Point&nbsp;University and Ithaca College", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Ithaca guarantees none of them.", "state": "North Carolina vs New York", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Ithaca College</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc\">40+</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl last\">Trips to the NCAA Tournament</div>\n      <div class=\"rv usc last\">2</div>\n      <div class=\"rv last\">0</div>", "cap": "How High Point University and Ithaca College compare", "them": "Ithaca College", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">NCAA division</th><td role=\"cell\" class=\"us\">I</td><td role=\"cell\" class=\"them\">III</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Ithaca does not", "gInt": "Finish the five-step career program and you will have an internship. Ithaca makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Ithaca you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. None at Ithaca.", "ncaaVs": "High&nbsp;Point&nbsp;University plays NCAA Division I. Ithaca plays Division III.", "sources": "<li>High Point University published program pages.</li>\n<li>Ithaca College published program and commitment pages.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "monmouth": {"n": 6, "title": "6 differences between High Point University and Monmouth University", "desc": "A side-by-side comparison of High Point University and Monmouth University: guarantees, cost, leaders in residence and athletics.", "abbr": "Monmouth", "h1": "6 differences between High&nbsp;Point&nbsp;University and Monmouth University", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Monmouth guarantees none of them.", "state": "North Carolina vs New Jersey", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Monmouth University</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc\">40+</div>\n      <div class=\"rv\">1</div>\n\n      <div class=\"rl last\">Most recent NCAA Tournament</div>\n      <div class=\"rv usc last\">2026</div>\n      <div class=\"rv last\">2006</div>", "cap": "How High Point University and Monmouth University compare", "them": "Monmouth University", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">One</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Most recent NCAA Tournament</th><td role=\"cell\" class=\"us\">2026</td><td role=\"cell\" class=\"them\">2006</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Monmouth does not", "gInt": "Finish the five-step career program and you will have an internship. Monmouth makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Monmouth you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. One at Monmouth.", "ncaaVs": "High&nbsp;Point&nbsp;University last played in the NCAA Tournament in 2026. Monmouth last played in 2006.", "sources": "<li>High Point University published program pages.</li>\n<li>Monmouth University published catalog, graduate aid and tuition pages.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "chapman": {"n": 7, "title": "7 differences between High Point University and Chapman University", "desc": "A side-by-side comparison of High Point University and Chapman University: guarantees, cost, leaders in residence and athletics.", "abbr": "Chapman", "h1": "7 differences between High&nbsp;Point&nbsp;University and Chapman University", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Chapman guarantees none of them.", "state": "North Carolina vs California", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Chapman University</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl last\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc last\">40+</div>\n      <div class=\"rv last\">0</div>", "cap": "How High Point University and Chapman University compare", "them": "Chapman University", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">NCAA division</th><td role=\"cell\" class=\"us\">I</td><td role=\"cell\" class=\"them\">III</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Chapman does not", "gInt": "Finish the five-step career program and you will have an internship. Chapman makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Chapman you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. None at Chapman.", "ncaaVs": "High&nbsp;Point&nbsp;University plays NCAA Division I. Chapman plays Division III.", "sources": "<li>High Point University published program pages and cost of attendance for 2026-27.</li>\n<li>Chapman University published program pages and cost of attendance for 2026-27.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}, "pepperdine": {"n": 7, "title": "7 differences between High Point University and Pepperdine University", "desc": "A side-by-side comparison of High Point University and Pepperdine University: guarantees, cost, leaders in residence and athletics.", "abbr": "Pepperdine", "h1": "7 differences between High&nbsp;Point&nbsp;University and Pepperdine University", "deck": "High&nbsp;Point&nbsp;University guarantees an internship, graduation in four years, a summer abroad and a master's degree. Pepperdine guarantees none of them.", "state": "North Carolina vs California", "ranksOn": false, "ranksH2": "Where each university stands", "ranks": "      <div class=\"rh blank\"></div>\n      <div class=\"rh usc\">High Point University</div>\n      <div class=\"rh\">Pepperdine University</div>\n\n      <div class=\"rl\">Guarantees published for every student</div>\n      <div class=\"rv usc\">4</div>\n      <div class=\"rv\">0</div>\n\n      <div class=\"rl last\">Named leaders in residence from outside the university</div>\n      <div class=\"rv usc last\">40+</div>\n      <div class=\"rv last\">0</div>", "cap": "How High Point University and Pepperdine University compare", "them": "Pepperdine University", "rows": "        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">An internship, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Graduation in four years, guaranteed</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free term abroad</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">A tuition-free master's degree</th><td role=\"cell\" class=\"us\">Yes</td><td role=\"cell\" class=\"them\">No, you pay tuition</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Tuition-free certifications for your resume</th><td role=\"cell\" class=\"us\">13</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Named leaders in residence from outside the university</th><td role=\"cell\" class=\"us\">More than 40</td><td role=\"cell\" class=\"them\">None</td></tr>\n        <tr role=\"row\"><th scope=\"row\" role=\"rowheader\">Most recent NCAA Tournament</th><td role=\"cell\" class=\"us\">2026</td><td role=\"cell\" class=\"them\">2002</td></tr>", "gteeH2": "Four things High&nbsp;Point&nbsp;University guarantees that Pepperdine does not", "gInt": "Finish the five-step career program and you will have an internship. Pepperdine makes no such promise.", "gAbroad": "Take a four-credit Maymester course overseas and HPU covers the tuition. At Pepperdine you pay tuition.", "teachVs": "More than forty names published at High&nbsp;Point&nbsp;University. None at Pepperdine.", "ncaaVs": "High&nbsp;Point&nbsp;University last played in the NCAA Tournament in 2026. Pepperdine last played in 2002.", "sources": "<li>High Point University published program pages and cost of attendance for 2026-27.</li>\n<li>Pepperdine University published international programs and cost pages for 2026-27.</li>\n<li>Big South Conference and NCAA Division I tournament records.</li>"}}, ORDER = ["tampa", "marist", "loyola-maryland", "quinnipiac", "ithaca", "monmouth", "chapman", "pepperdine"], current = "chapman";
+
+  function q(sel) { return document.querySelector(sel); }
+
+  // Resolve which school this view should open on.
+  // Precedence: ?school=  >  #hash  >  the folder this file was served from.
+  function requested() {
+    var p = new URLSearchParams(location.search).get('school');
+    if (p && D[p]) return p;
+    var h = location.hash.replace(/^#/, '');
+    if (h && D[h]) return h;
+    var seg = location.pathname.split('/').filter(Boolean).pop();
+    if (seg && D[seg]) return seg;
+    return current;
+  }
+
+  // Outbound links carry the school in utm_content so Google Ads and GA4 keep
+  // per-school attribution after a tab switch.
+  function retag(slug) {
+    var links = document.querySelectorAll('a[href*="highpoint.edu"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].href = links[i].href.replace(/([?&]utm_content=)[^&#]*/, '$1' + slug);
+    }
+  }
+
+  function apply(slug, push) {
+    var d = D[slug]; if (!d) return;
+    current = slug;
+
+    document.title = d.title;
+    q('#pgDesc').setAttribute('content', d.desc);
+    q('#pgH1').innerHTML   = d.h1;
+    q('#pgDeck').innerHTML = d.deck;
+    q('#pgScope').innerHTML = d.state;
+
+    q('#numbers').hidden     = !d.ranksOn;
+    q('#jumpNumbers').hidden = !d.ranksOn;
+    q('#numbersH2').innerHTML = d.ranksH2;
+    q('#ranksGrid').innerHTML = d.ranks;
+
+    q('#tblCap').innerHTML  = d.cap;
+    q('#tblThem').innerHTML = d.them;
+    q('#tblBody').innerHTML = d.rows;
+
+    q('#gteeH2').innerHTML  = d.gteeH2;
+    q('#gInt').innerHTML    = d.gInt;
+    q('#gAbroad').innerHTML = d.gAbroad;
+
+    q('#teach .vs').innerHTML = d.teachVs;
+    q('#ncaa .vs').innerHTML  = d.ncaaVs;
+    q('#srcList').innerHTML   = d.sources;
+
+    retag(slug);
+
+    var tabs = document.querySelectorAll('.tab');
+    for (var i = 0; i < tabs.length; i++) {
+      var on = tabs[i].getAttribute('data-school') === slug;
+      tabs[i].setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs[i].tabIndex = on ? 0 : -1;
+    }
+    q('main').setAttribute('aria-labelledby', 'tab-' + slug);
+
+    if (push) {
+      // Rewrite to that school's real path and KEEP the query string, so gclid,
+      // auto-tagging and any UTM parameters survive the switch. replaceState,
+      // not pushState: a paid visitor's Back button must return to the ad, not
+      // walk them through every tab they opened.
+      var url = '/' + slug + '/' + location.search + location.hash;
+      history.replaceState(null, '', url);
+      if (window.gtag) {
+        gtag('event', 'page_view', {
+          page_title: d.title,
+          page_location: location.origin + url,
+          comparison_school: slug
+        });
+      }
+    }
+  }
+
+  var strip = q('.tabstrip');
+  strip.addEventListener('click', function (e) {
+    var b = e.target.closest('.tab'); if (!b) return;
+    apply(b.getAttribute('data-school'), true);
+    window.scrollTo(0, 0);
+  });
+  strip.addEventListener('keydown', function (e) {
+    var k = e.key, i = ORDER.indexOf(current), n;
+    if (k === 'ArrowRight') n = (i + 1) % ORDER.length;
+    else if (k === 'ArrowLeft') n = (i - 1 + ORDER.length) % ORDER.length;
+    else if (k === 'Home') n = 0;
+    else if (k === 'End') n = ORDER.length - 1;
+    else return;
+    e.preventDefault();
+    apply(ORDER[n], true);
+    q('#tab-' + ORDER[n]).focus();
+  });
+  window.addEventListener('hashchange', function () {
+    var h = location.hash.replace(/^#/, '');
+    if (D[h] && h !== current) apply(h, true);
+  });
+
+  // Deep link on arrival. Only repaint when it differs from what was rendered.
+  var want = requested();
+  if (want !== current) apply(want, false);
+  retag(current);
+  window.__school = function () { return current; };
+})();
+</script>
 
 </body>
 </html>
