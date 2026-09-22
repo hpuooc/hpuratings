@@ -238,7 +238,8 @@ figcaption{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--faint)}
    Fixed at the top of the document, never sticky, never a dropdown. On phones it
    becomes a 4-across grid so all eight schools are reachable in one tap with no
    horizontal swipe. */
-.tabstrip{background:#fff;border-bottom:2px solid var(--ink)}
+.tabstrip{background:#fff;border-bottom:1px solid var(--rule)}
+.mast{border-bottom:2px solid var(--ink)}
 .tabstrip .inner{display:flex;max-width:840px;margin:0 auto;padding:0 20px}
 .tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;
   margin:0;padding:13px 15px 11px;cursor:pointer;white-space:nowrap;
@@ -266,11 +267,6 @@ main{animation:fade .16s ease-out}
 </head>
 <body>
 
-<header class="mast"><div class="wrap">
-  <a class="site" href="#top"><b>Private School Comparison</b></a>
-  <a class="mbtn" href="https://www.highpoint.edu/?utm_source=collegefactsheets.com&amp;utm_medium=referral&amp;utm_campaign=school-comparison-2026&amp;utm_content=marist">Visit university website</a>
-</div></header>
-
 <nav class="tabstrip"><div class="inner" role="tablist" aria-label="Compare High Point University with">
   <button class="tab" role="tab" id="tab-tampa" data-school="tampa" aria-selected="false" tabindex="-1">Tampa</button>
   <button class="tab" role="tab" id="tab-marist" data-school="marist" aria-selected="true" tabindex="0">Marist</button>
@@ -281,6 +277,11 @@ main{animation:fade .16s ease-out}
   <button class="tab" role="tab" id="tab-chapman" data-school="chapman" aria-selected="false" tabindex="-1">Chapman</button>
   <button class="tab" role="tab" id="tab-pepperdine" data-school="pepperdine" aria-selected="false" tabindex="-1">Pepperdine</button>
 </div></nav>
+
+<header class="mast"><div class="wrap">
+  <a class="site" href="#top"><b>Private School Comparison</b></a>
+  <a class="mbtn" href="https://www.highpoint.edu/?utm_source=collegefactsheets.com&amp;utm_medium=referral&amp;utm_campaign=school-comparison-2026&amp;utm_content=marist">Visit university website</a>
+</div></header>
 
 <main id="top" role="tabpanel" aria-labelledby="tab-marist">
 <div class="wrap">
